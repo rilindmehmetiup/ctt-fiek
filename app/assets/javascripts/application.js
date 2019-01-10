@@ -15,3 +15,17 @@
 // require turbolinks
 //= require dropzone
 //= require_tree .
+
+
+let showLoader = function () {
+    let loader = $('.loader-holder');
+    if (loader.length > 0) {
+        if ($(loader.hasClass('hidden'))) {
+            $(loader).removeClass('hidden');
+        }
+    }
+};
+
+let hideLoader = function () {
+    $('.loader-holder').addClass('hidden')
+};

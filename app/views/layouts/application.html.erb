@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NetwrokGeoInfluence</title>
+  <title>CttFiek</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+  <link rel="icon" href="<%= image_path 'UniPr.png' %>" type="image/png" sizes="16x16">
   <!-- Bootstrap core JavaScript -->
   <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -28,6 +28,24 @@
 </head>
 
 <body id="page-top">
+<div class="loader-holder hidden">
+  <div class="loader-wrapper">
+    <div class="loader">
+      <div class="roller"></div>
+      <div class="roller"></div>
+    </div>
+
+    <div id="loader2" class="loader">
+      <div class="roller"></div>
+      <div class="roller"></div>
+    </div>
+
+    <div id="loader3" class="loader">
+      <div class="roller"></div>
+      <div class="roller"></div>
+    </div>
+  </div>
+</div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
   <div class="header">
     <img src="<%= image_path 'UniPr.png' %>" alt="Universiteti i Prishtines" class="header-image"> <span class="title">Universiteti i Prishtines</span>

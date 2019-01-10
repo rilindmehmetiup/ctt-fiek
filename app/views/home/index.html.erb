@@ -20,7 +20,7 @@
               <%= select_tag :validation, options_for_select(get_validation_options), class: 'form-control' %>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-sm btn-primary">Execute</button>
+              <button type="submit" class="btn btn-sm btn-primary" onclick="showLoader()">Execute</button>
             </div>
           <% end %>
         </div>

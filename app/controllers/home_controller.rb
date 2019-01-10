@@ -20,8 +20,8 @@ class HomeController < ApplicationController
       File.delete(@solution_path)
     rescue Exception => e
       @error_message = e.message
-      File.delete(@instance_path) if File.exists?(@instance_path)
-      File.delete(@solution_path) if File.exists?(@solution_path)
+      File.delete(@instance_path) if @instance_path && File.exists?(@instance_path)
+      File.delete(@solution_path) if @solution_path && File.exists?(@solution_path)
     end
   end
 
