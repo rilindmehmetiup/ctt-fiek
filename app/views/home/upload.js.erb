@@ -1,0 +1,7 @@
+var resultHolder = $('.result-holder')
+if (resultHolder.length > 0) {
+    $(resultHolder).fadeOut(function () {
+        $(resultHolder).html('<%= j render 'result', violations: @violations, error_message: @error_message, final_result: @final_result %>');
+        $(resultHolder).fadeIn();
+    });
+}

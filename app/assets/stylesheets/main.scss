@@ -1,0 +1,86 @@
+$white-color: #ffffff;
+
+/* fonts */
+
+div.jqcloud {
+  font-size: 10px;
+  line-height: normal;
+}
+
+div.jqcloud a {
+  font-size: inherit;
+  text-decoration: none;
+}
+
+div.jqcloud span.w10 { font-size: 550%; }
+div.jqcloud span.w9 { font-size: 500%; }
+div.jqcloud span.w8 { font-size: 450%; }
+div.jqcloud span.w7 { font-size: 400%; }
+div.jqcloud span.w6 { font-size: 350%; }
+div.jqcloud span.w5 { font-size: 300%; }
+div.jqcloud span.w4 { font-size: 250%; }
+div.jqcloud span.w3 { font-size: 200%; }
+div.jqcloud span.w2 { font-size: 150%; }
+div.jqcloud span.w1 { font-size: 100%; }
+
+/* colors */
+
+div.jqcloud { color: #2BA0FD; }
+div.jqcloud span.w10 { color: #3D5A68; }
+div.jqcloud span.w9 { color: #563225; }
+div.jqcloud span.w8 { color: #DC7500; }
+div.jqcloud span.w7 { color: #298C2D; }
+div.jqcloud span.w6 { color:  #0073D0; }
+div.jqcloud span.w5 { color:  #1C2E92; }
+div.jqcloud span.w4 { color: #441794; }
+div.jqcloud span.w3 { color: #79048D; }
+div.jqcloud span.w2 { color: #C60040; }
+div.jqcloud span.w1 { color: #D12013; }
+div.jqcloud span:hover { color: #0099B2; }
+
+
+/* layout */
+
+div.jqcloud {
+  overflow: hidden;
+  position: relative;
+  margin: 20px auto;
+}
+
+div.jqcloud span {
+  padding: 0;
+}
+
+.footer-link{
+  color: $white-color;
+  padding: 10px;
+  transition: all ease-in-out .6s;
+  &:hover{
+    color: darken($white-color, 20%);
+    font-size: 14px;
+    text-decoration: none;
+  }
+}
+
+.header{
+  width: 100%;
+  text-align: left;
+  vertical-align: center;
+  .header-image{
+    max-width: 35px;
+    margin: 0;
+  }
+
+  span{
+    &.title{
+      margin-top: 2px;
+      font-size: 18px;
+      color: $white-color;
+    }
+  }
+}
+
+.main-content{
+  min-width: 1490px;
+  width: 100%;
+}

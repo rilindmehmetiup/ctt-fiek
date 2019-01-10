@@ -1,0 +1,35 @@
+<section class="resume-section p-3 p-lg-5 d-flex d-column" id="main">
+  <div class="my-auto">
+    <h2 class="mb-0">Course Time Table
+      <span class="text-primary">FIEK</span>
+    </h2>
+    <div class="main-content">
+      <div class="row">
+        <div class="col-4">
+          <%= form_tag(upload_home_index_path, {multipart: true, remote: true}) do %>
+            <label>Instance</label>
+            <div class="form-group">
+              <%= file_field_tag :instance %>
+            </div>
+            <label>Solution</label>
+            <div class="form-group">
+              <%= file_field_tag :solution %>
+            </div>
+            <label>Validation</label>
+            <div class="form-group">
+              <%= select_tag :validation, options_for_select(get_validation_options), class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-sm btn-primary">Execute</button>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-7">
+          <div class="result-holder">
+            <%= render 'result', violations: @violations, error_message: @error_message, final_result: @final_result %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

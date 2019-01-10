@@ -1,0 +1,26 @@
+<% if error_message %>
+  <div class="row">
+    <div class="col-12">
+      <p class="error-holder"><%= error_message %></p>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <% if violations && violations.length > 0 %>
+      <div class="col-12">
+        <h4>Violations</h4>
+        <% violations.each do |violation| %>
+          <p><%= violation %></p>
+        <% end %>
+      </div>
+    <% end %>
+    <% if final_result && !final_result.empty? %>
+      <div class="col-12">
+        <h4>Summary</h4>
+        <% final_result.each do |key, value| %>
+          <p><%= value %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
