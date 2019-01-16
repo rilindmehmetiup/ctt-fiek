@@ -5,7 +5,8 @@ $error-background: #e07777;
 }
 
 .result-holder {
-  height: 800px;
+  min-height: 400px;
+  max-height: 800px;
   background-color: $result-content-color;
   padding: 20px;
   overflow: auto;
