@@ -55,6 +55,8 @@ class Timetable
         @warnings = warnings + 1
         next
       end
+      puts "Course: #{course_name}"
+      puts "Covered Periods: #{}"
       course.get_covered_time_slots.times do |i|
         tt[c][p + i] = r
       end
@@ -184,14 +186,17 @@ class Timetable
     while curriculum_period_lectures[curriculum][last_p] == 0
       last_p = last_p - 1
     end
-    #puts "First period: #{first_p}, Last period: #{last_p}"
+=begin
+    puts "First period: #{first_p}, Last period: #{last_p}"
+=end
     ((first_p + 1)..(last_p - 1)).each do |p|
       if curriculum_period_lectures[curriculum][p] == 0
         windows = windows + 1
       end
     end
+
 =begin
-    if curriculum == 5
+    if curriculum == 0
       puts "Curriculum Day: #{day}"
       puts "Curriculum daily lectures: #{curriculum_daily_lectures[curriculum].inspect}"
       puts "Curriculum periods per day: #{curriculum_period_lectures[curriculum]}"
@@ -199,6 +204,7 @@ class Timetable
       abort('Here')
     end
 =end
+
     windows
   end
 

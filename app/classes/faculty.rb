@@ -4,16 +4,17 @@ class Faculty
   attr_accessor :name, :rooms,
                 :courses, :periods,
                 :periods_per_day, :curricula, :min_lectures,
-                :max_lectures, :days, :slots_per_lecture, :apply_breaks
+                :max_lectures, :days, :slots_per_lecture, :apply_breaks, :validator
 
   attr_accessor :course_vect, :room_vect, :curricula_vect
 
   attr_accessor :availability, :conflict, :room_constraints
 
-  def initialize(file_name)
+  def initialize(file_name, validator = nil)
     @course_vect = []
     @room_vect = [Room.new('')]
     @curricula_vect = []
+    @validator = validator
     file_path = File.join(Rails.root, 'storage', file_name)
     raise "File does not exist" unless File.exists?(file_path)
     doc = File.open(file_path) {|f| Nokogiri::XML(f)}
@@ -25,8 +26,14 @@ class Faculty
     description = instance.xpath('//descriptor').first
     days = description.xpath('//days').first.attribute('value').value.to_i
     @periods_per_day = description.xpath('//periods_per_day').first.attribute('value').value.to_i
-    @slots_per_lecture = description.xpath('//slots_per_lecture').first.attribute('value').value.to_i
-    @apply_breaks = ['yes', 'True'].include?(description.xpath('//apply_breaks').first.attribute('value').value) ? true : false
+    @apply_breaks = false
+    @slots_per_lecture = 1
+    if Validator::UNI_PR_VALIDATORS.include?(validator)
+      @slots_per_lecture = 3
+      @apply_breaks = true
+      @periods_per_day = periods_per_day * 4
+    end
+
     @curricula = instance.xpath('//curricula').first.elements.length
     @min_lectures = description.xpath('//daily_lectures').first.attribute('min').value.to_i
     @max_lectures = description.xpath('//daily_lectures').first.attribute('max').value.to_i
@@ -45,7 +52,7 @@ class Faculty
     @conflict = Array.new(courses) {Array.new(courses, false)}
     @room_constraints = Array.new(courses) {Array.new(rooms+1,false)}
 
-    instance.xpath('//courses').first.elements.each {|element| course_vect << Course.new(element, slots_per_lecture, apply_breaks)}
+    instance.xpath('//courses').first.elements.each {|element| course_vect << Course.new(element, slots_per_lecture, apply_breaks, validator)}
     instance.xpath('//rooms').first.elements.each {|element| room_vect << Room.new(element)}
     instance.xpath('//curricula').first.elements.each do |element|
       curriculum = Curriculum.new(element)

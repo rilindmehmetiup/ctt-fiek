@@ -28,7 +28,7 @@ class HomeController < ApplicationController
   private
 
   def validate_solution(instance_name, solution_name, validator)
-    faculty = Faculty.new(instance_name)
+    faculty = Faculty.new(instance_name, validator)
     timetable = Timetable.new(faculty, solution_name)
     validator = Validator.new(faculty, timetable, validator)
     validator.print_violations

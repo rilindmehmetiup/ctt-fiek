@@ -6,6 +6,9 @@ class Validator
                 :room_constraint_cost, :student_load_cost,
                 :double_lectures_cost, :travel_cost
 
+
+  UNI_PR_VALIDATORS = %w(PR1 PR2)
+
   def initialize(faculty, timetable, formulation)
     @faculty = faculty
     @timetable = timetable
@@ -58,51 +61,51 @@ class Validator
     end
 
     if formulation == 'UD2'
-      puts "Violations of Lectures (hard): #{costs_on_lectures}"
-      puts "Violations of Conflicts (hard): #{costs_on_conflicts}"
-      puts "Violations of Availability (hard): #{costs_on_availability}"
-      puts "Violations of RoomOccupation (hard): #{costs_on_room_occupation}"
-      puts "Cost of RoomCapacity (soft): #{costs_on_room_capacity}"
-      puts "Cost of MinWorkingDays (soft): #{costs_on_min_working_days * min_working_days_cost}"
-      puts "Cost of IsolatedLectures (soft): #{costs_on_isolated_lectures * isolated_lectures_cost}"
-      puts "Cost of RoomStability (soft): #{costs_on_room_stability * room_stability_cost}"
+      set_final_result_key :lecture_violations, "Violations of Lectures (hard): #{costs_on_lectures}"
+      set_final_result_key :conflict_violations, "Violations of Conflicts (hard): #{costs_on_conflicts}"
+      set_final_result_key :availability_violations, "Violations of Availability (hard): #{costs_on_availability}"
+      set_final_result_key :room_occupation_violations, "Violations of RoomOccupation (hard): #{costs_on_room_occupation}"
+      set_final_result_key :room_capacity_violations, "Cost of RoomCapacity (soft): #{costs_on_room_capacity}"
+      set_final_result_key :min_working_days_violations, "Cost of MinWorkingDays (soft): #{costs_on_min_working_days * min_working_days_cost}"
+      set_final_result_key :isolated_lectures_violations, "Cost of IsolatedLectures (soft): #{costs_on_isolated_lectures * isolated_lectures_cost}"
+      set_final_result_key :room_stability_violations, "Cost of RoomStability (soft): #{costs_on_room_stability * room_stability_cost}"
     end
 
     if formulation == 'UD3'
-      puts "Violations of Lectures (hard): #{costs_on_lectures}"
-      puts "Violations of Conflicts (hard): #{costs_on_conflicts}"
-      puts "Violations of Availability (hard): #{costs_on_availability}"
-      puts "Violations of RoomOccupation (hard): #{costs_on_room_occupation}"
-      puts "Cost of RoomCapacity (soft): #{costs_on_room_capacity}"
-      puts "Cost of CurriculumCompactness (soft): #{costs_on_curriculum_compactness * @compactness_cost}"
-      puts "Cost of RoomConstraints (soft): #{costs_on_room_constraints * @room_constraint_cost}"
-      puts "Cost of StudentLoad (soft): #{costs_on_student_load * student_load_cost}"
+      set_final_result_key :lecture_violations, "Violations of Lectures (hard): #{costs_on_lectures}"
+      set_final_result_key :conflict_violations, "Violations of Conflicts (hard): #{costs_on_conflicts}"
+      set_final_result_key :availability_violations, "Violations of Availability (hard): #{costs_on_availability}"
+      set_final_result_key :room_occupation_violations, "Violations of RoomOccupation (hard): #{costs_on_room_occupation}"
+      set_final_result_key :room_capacity_violations, "Cost of RoomCapacity (soft): #{costs_on_room_capacity}"
+      set_final_result_key :curriculum_compactness_violations, "Cost of CurriculumCompactness (soft): #{costs_on_curriculum_compactness * @compactness_cost}"
+      set_final_result_key :room_constraints_violations, "Cost of RoomConstraints (soft): #{costs_on_room_constraints * @room_constraint_cost}"
+      set_final_result_key :student_load_violations, "Cost of StudentLoad (soft): #{costs_on_student_load * student_load_cost}"
     end
 
     if formulation == 'UD4'
-      puts "Violations of Lectures (hard): #{costs_on_lectures}"
-      puts "Violations of Conflicts (hard): #{costs_on_conflicts}"
-      puts "Violations of Availability (hard): #{costs_on_availability}"
-      puts "Violations of RoomOccupation (hard): #{costs_on_room_occupation}"
-      puts "Violations of RoomConstraints (hard): #{costs_on_room_constraints}"
-      puts "Cost of RoomCapacity (soft): #{costs_on_room_capacity}"
-      puts "Cost of MinWorkingDays (soft): #{costs_on_min_working_days * min_working_days_cost}"
-      puts "Cost of CurriculumCompactness (soft): #{costs_on_curriculum_compactness * compactness_cost}"
-      puts "Cost of DoubleLectures (soft): #{costs_on_double_lectures * double_lectures_cost}"
-      puts "Cost of StudentLoad (soft): #{costs_on_student_load * student_load_cost}"
+      set_final_result_key :lecture_violations, "Violations of Lectures (hard): #{costs_on_lectures}"
+      set_final_result_key :conflict_violations, "Violations of Conflicts (hard): #{costs_on_conflicts}"
+      set_final_result_key :availability_violations, "Violations of Availability (hard): #{costs_on_availability}"
+      set_final_result_key :room_occupation_violations, "Violations of RoomOccupation (hard): #{costs_on_room_occupation}"
+      set_final_result_key :room_constraints_violations, "Violations of RoomConstraints (hard): #{costs_on_room_constraints}"
+      set_final_result_key :room_capacity_violations, "Cost of RoomCapacity (soft): #{costs_on_room_capacity}"
+      set_final_result_key :min_working_days_violations, "Cost of MinWorkingDays (soft): #{costs_on_min_working_days * min_working_days_cost}"
+      set_final_result_key :curriculum_compactness_violations, "Cost of CurriculumCompactness (soft): #{costs_on_curriculum_compactness * compactness_cost}"
+      set_final_result_key :double_lectures_violations, "Cost of DoubleLectures (soft): #{costs_on_double_lectures * double_lectures_cost}"
+      set_final_result_key :student_load_violations, "Cost of StudentLoad (soft): #{costs_on_student_load * student_load_cost}"
     end
 
     if formulation == 'UD5'
-      puts "Violations of Lectures (hard) : #{costs_on_lectures}"
-      puts "Violations of Conflicts (hard) : #{costs_on_conflicts}"
-      puts "Violations of Availability (hard): #{costs_on_availability}"
-      puts "Violations of RoomOccupation (hard): #{costs_on_room_occupation}"
-      puts "Cost of RoomCapacity (soft): #{costs_on_room_capacity}"
-      puts "Cost of MinWorkingDays (soft): #{costs_on_min_working_days * min_working_days_cost}"
-      puts "Cost of CurriculumCompactness (soft): #{costs_on_curriculum_compactness * compactness_cost}"
-      puts "Cost of StudentLoad (soft): #{costs_on_student_load * student_load_cost}"
-      puts "Cost of TravelDistance (soft): #{costs_on_travel_distance * travel_cost}"
-      puts "Cost of IsolatedLectures (soft): #{costs_on_isolated_lectures * isolated_lectures_cost}"
+      set_final_result_key :lecture_violations, "Violations of Lectures (hard) : #{costs_on_lectures}"
+      set_final_result_key :conflict_violations, "Violations of Conflicts (hard) : #{costs_on_conflicts}"
+      set_final_result_key :availability_violations, "Violations of Availability (hard): #{costs_on_availability}"
+      set_final_result_key :room_occupation_violations, "Violations of RoomOccupation (hard): #{costs_on_room_occupation}"
+      set_final_result_key :room_capacity_violations, "Cost of RoomCapacity (soft): #{costs_on_room_capacity}"
+      set_final_result_key :min_working_days_violations, "Cost of MinWorkingDays (soft): #{costs_on_min_working_days * min_working_days_cost}"
+      set_final_result_key :curriculum_compactness_violations, "Cost of CurriculumCompactness (soft): #{costs_on_curriculum_compactness * compactness_cost}"
+      set_final_result_key :student_load_violations, "Cost of StudentLoad (soft): #{costs_on_student_load * student_load_cost}"
+      set_final_result_key :travel_distance_violations, "Cost of TravelDistance (soft): #{costs_on_travel_distance * travel_cost}"
+      set_final_result_key :isolated_lectures_violations, "Cost of IsolatedLectures (soft): #{costs_on_isolated_lectures * isolated_lectures_cost}"
     end
 
     if formulation == 'PR1'
@@ -150,7 +153,7 @@ class Validator
     elsif formulation == 'UD5'
       total_cost = costs_on_room_capacity + costs_on_min_working_days * min_working_days_cost + costs_on_curriculum_compactness * compactness_cost + costs_on_isolated_lectures * isolated_lectures_cost + costs_on_travel_distance * travel_cost + costs_on_student_load * student_load_cost
     elsif formulation == 'PR1'
-      total_cost = costs_on_room_capacity + costs_on_curriculum_compactness * compactness_cost  + costs_on_student_load * student_load_cost + costs_on_isolated_lectures * isolated_lectures_cost
+      total_cost = costs_on_room_capacity + costs_on_curriculum_compactness * compactness_cost + costs_on_student_load * student_load_cost + costs_on_isolated_lectures * isolated_lectures_cost
     elsif formulation == 'PR2'
       total_cost = costs_on_room_capacity + costs_on_curriculum_compactness * compactness_cost
     end
@@ -237,10 +240,11 @@ class Validator
           lectures = lectures + 1
         end
       end
-      if lectures < faculty.course_vect[c].get_covered_time_slots
-        cost = cost + (faculty.course_vect[c].get_covered_time_slots - lectures)
-      elsif lectures > faculty.course_vect[c].get_covered_time_slots
-        cost = cost + (lectures - faculty.course_vect[c].get_covered_time_slots)
+      checked_lectures = UNI_PR_VALIDATORS.include?(formulation) ? faculty.course_vect[c].get_covered_time_slots : faculty.course_vect[c].lectures
+      if lectures < checked_lectures
+        cost = cost + (checked_lectures - lectures)
+      elsif lectures > checked_lectures
+        cost = cost + (lectures - checked_lectures)
       end
     end
     cost
@@ -412,9 +416,12 @@ class Validator
           lectures = lectures + 1
         end
       end
-      if lectures < faculty.course_vect[c].get_covered_time_slots
+
+      checked_lectures = UNI_PR_VALIDATORS.include?(formulation) ? faculty.course_vect[c].get_covered_time_slots : faculty.course_vect[c].lectures
+
+      if lectures < checked_lectures
         print_and_save_message "[H] Too few lectures for course #{faculty.course_vect[c].name}"
-      elsif lectures > faculty.course_vect[c].get_covered_time_slots
+      elsif lectures > checked_lectures
         print_and_save_message "[H] Too many lectures for course #{faculty.course_vect[c].name}"
       end
     end
@@ -446,7 +453,7 @@ class Validator
 
   def print_violations_on_room_occupation
     faculty.periods.times do |p|
-        (1..faculty.rooms).each do |r|
+      (1..faculty.rooms).each do |r|
         if timetable.room_lectures[r][p] > 1
           message = "[H] #{timetable.room_lectures[r][p]} lectures in room #{faculty.room_vect[r].name} the period (day #{p / faculty.periods_per_day}, timeslot #{p % faculty.periods_per_day})"
           message += " [#{timetable.room_lectures[r][p]} violations]"
@@ -462,7 +469,6 @@ class Validator
         r = timetable.tt[c][p]
         if r != 0 && faculty.room_vect[r].capacity < faculty.course_vect[c].students
           print_and_save_message "[S(#{faculty.course_vect[c].students - faculty.room_vect[r].capacity})] Room #{faculty.room_vect[r].name} to small for course #{faculty.course_vect[c].name} the period #{p} (day #{p / faculty.periods_per_day}, timeslot #{p % faculty.periods_per_day})"
-          break
         end
       end
     end
@@ -574,7 +580,7 @@ class Validator
       end
       if indexes.length > 1
         (indexes.length - 1).times do |i|
-            violated = true and break if (indexes[i+1] - indexes[i]) != 1
+          violated = true and break if (indexes[i + 1] - indexes[i]) != 1
         end
       end
       print_and_save_message "[H] Course #{faculty.course_vect[c].name} has gaps!" if violated
