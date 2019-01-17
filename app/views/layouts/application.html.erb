@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CttFiek</title>
+  <title>Orari Mesimor UNI-PR</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="icon" href="<%= image_path 'UniPr.png' %>" type="image/png" sizes="16x16">
+
   <!-- Bootstrap core JavaScript -->
   <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -23,45 +24,14 @@
 
   <!-- Custom styles for this template -->
   <link href="/css/resume.min.css" rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="https://www.highcharts.com/media/com_demo/css/highslide.css" />
 </head>
 
 <body id="page-top">
-<div class="loader-holder hidden">
-  <div class="loader-wrapper">
-    <div class="loader">
-      <div class="roller"></div>
-      <div class="roller"></div>
-    </div>
-
-    <div id="loader2" class="loader">
-      <div class="roller"></div>
-      <div class="roller"></div>
-    </div>
-
-    <div id="loader3" class="loader">
-      <div class="roller"></div>
-      <div class="roller"></div>
-    </div>
-  </div>
-</div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
   <div class="header">
     <img src="<%= image_path 'UniPr.png' %>" alt="Universiteti i Prishtines" class="header-image"> <span class="title">Universiteti i Prishtines</span>
   </div>
-  <a class="navbar-brand js-scroll-trigger" href="#page-top">
-    <span class="d-block d-lg-none">Clarence Taylor</span>
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link js-scroll-trigger" href="#main">Course Time Table Validator</a>
-      </li>
-    </ul>
   </div>
   <div class="footer">
     <a href="https://fiek.uni-pr.edu" class="footer-link">FIEK 2019</a>
