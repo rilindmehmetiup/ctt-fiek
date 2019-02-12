@@ -179,6 +179,7 @@ class Validator
       print_violations_on_room_capacity
       print_violations_on_min_working_days
       print_violations_on_room_stability
+      print_violations_on_isolated_lectures
     elsif formulation == 'UD3'
       print_violations_on_lectures
       print_violations_on_conflicts
@@ -297,7 +298,7 @@ class Validator
         r = timetable.tt[c][p]
         if r != 0 && faculty.room_vect[r].capacity < faculty.course_vect[c].students
           cost = cost + (faculty.course_vect[c].students - faculty.room_vect[r].capacity)
-          break
+          break if %w(PR1 PR2).include?(@formulation)
         end
       end
     end
