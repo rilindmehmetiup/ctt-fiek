@@ -298,7 +298,7 @@ class Validator
         r = timetable.tt[c][p]
         if r != 0 && faculty.room_vect[r].capacity < faculty.course_vect[c].students
           cost = cost + (faculty.course_vect[c].students - faculty.room_vect[r].capacity)
-          break if %w(PR1 PR2).include?(@formulation)
+          break if UNI_PR_VALIDATORS.include?(@formulation)
         end
       end
     end
@@ -324,12 +324,12 @@ class Validator
           if p % ppd == 0
             if timetable.curriculum_period_lectures[g][p + 1] == 0
               cost = cost + timetable.curriculum_period_lectures[g][p]
-            elsif p % ppd == ppd - 1
-              if timetable.curriculum_period_lectures[g][p - 1] == 0
-                cost = cost + timetable.curriculum_period_lectures[g][p]
-              elsif timetable.curriculum_period_lectures[g][p + 1] == 0 && timetable.curriculum_period_lectures[g][p - 1] == 0
-                cost = cost + timetable.curriculum_period_lectures[g][p]
-              end
+            end
+          elsif p % ppd == ppd - 1
+            if timetable.curriculum_period_lectures[g][p - 1] == 0
+              cost = cost + timetable.curriculum_period_lectures[g][p]
+            elsif timetable.curriculum_period_lectures[g][p + 1] == 0 && timetable.curriculum_period_lectures[g][p - 1] == 0
+              cost = cost + timetable.curriculum_period_lectures[g][p]
             end
           end
         end
