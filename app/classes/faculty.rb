@@ -50,7 +50,7 @@ class Faculty
 
     @availability = Array.new(courses) {Array.new(periods, true)}
     @conflict = Array.new(courses) {Array.new(courses, false)}
-    @room_constraints = Array.new(courses) {Array.new(rooms+1,false)}
+    @room_constraints = Array.new(courses) {Array.new(rooms + 1, false)}
 
     instance.xpath('//courses').first.elements.each {|element| course_vect << Course.new(element, slots_per_lecture, apply_breaks, validator)}
     instance.xpath('//rooms').first.elements.each {|element| room_vect << Room.new(element)}
@@ -74,9 +74,17 @@ class Faculty
         element.elements.each do |child|
           day_index = child.attribute('day').value.to_i
           period_index = child.attribute('period').value.to_i
-          p = day_index * periods_per_day + period_index
           c = course_index(_course_name)
-          availability[c][p] = false
+          if Validator::UNI_PR_VALIDATORS.include?(validator)
+            p = day_index * periods_per_day + period_index * 4
+            availability[c][p] = false
+            availability[c][p + 1] = false
+            availability[c][p + 2] = false
+            availability[c][p + 3] = false
+          else
+            p = day_index * periods_per_day + period_index
+            availability[c][p] = false
+          end
         end
       elsif element.attribute('type').value == 'room'
         _course_name = element.attribute('course').value.strip
@@ -88,8 +96,8 @@ class Faculty
         end
       end
     end
-    for i in 0..(course_vect.length-2) do
-      for j in (i+1)..(course_vect.length-1) do
+    for i in 0..(course_vect.length - 2) do
+      for j in (i + 1)..(course_vect.length - 1) do
         if (course_vect[i].teacher == course_vect[j].teacher)
           conflict[i][j] = true
           conflict[j][i] = true
